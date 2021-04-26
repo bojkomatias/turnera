@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Consults</h1>
+
+<br>
+<form method="GET" action="/consults">
+  Nombre para filtrar: <input type="text" name="filter" />  
+  <input type="submit" />
+</form>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consults.each do |consult| %>
+      <tr>
+        <td><%= consult.data %></td>
+        <td><%= consult.doctor.full_name %></td>
+        <td><%= consult.patient.full_name %></td>
+        <td><%= link_to 'Show', consult %></td>
+        <td><%= link_to 'Edit', edit_consult_path(consult) %></td>
+        <td><%= link_to 'Destroy', consult, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consult', new_consult_path %>
